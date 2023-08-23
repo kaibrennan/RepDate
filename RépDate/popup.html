@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>RépDate</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet">
+
+    <style>
+        body, a{
+            font-family: 'Roboto Mono', monospace;
+            color: whitesmoke;
+            background-color: #292C33;
+            font-size: 12px;
+            margin: 10px;
+            min-height: 300px;
+            padding: 0;
+            text-align: center;
+            min-width: 250px;
+        }
+        table{
+            width: 150px;
+        }
+        th{
+            font-size: 13px;
+            font-weight: 400;
+            margin: 0;
+            padding: 10px;
+            width: 65px;
+        }
+        td{
+            padding: 10px;
+            margin: 0;
+        }
+        .head i{
+            font-size: 10px;
+        }
+        .title{
+            font-size: 20px;
+            font-weight: 600;
+        }
+        .foot{
+            font-size: 7.5px;
+        }
+        .head, .foot{
+            margin: 5px;
+        }
+        .foot img{
+            margin-top: 5px;
+        }
+        /*.flexbox {
+            display: flex;
+        }*/
+    </style>
+</head>
+<body>
+    <div class = "head"><div class="title">RépDate (1.0.0)</div><i>Votre Calendrier Républicain en Ligne</i></div>
+    <div class = "flexbox">
+        <div>
+            <div id="monthimage"></div>
+            <p>Jour Républicain:<div id="repdate"></div><i><div id="symbol"></div></i><p>
+            <p>Temps Républicain:<div id="reptemps"></div></p>
+        </div>
+    </div>
+    <div class="foot">
+        <a href="mailto:kai.j.brennan@gmail.com?subject=Problème dans l'application de RépDate" target="_blank"><img src="images/bugreport.png" alt="Signaler un problème" style="width:15px;"></a>
+        <a href="https://fr.wikipedia.org/wiki/Calendrier_r%C3%A9publicain" target="_blank"><img src="images/learnmore.png" alt="En savoir plus" style="width:15px;"></a>
+        <p>© 2023 Kai Brennan & Paul Brotelande.<br>Tous droits réservés.</p><img src="images/footer.png" alt="Les armoiries héraldiques de Kai Brennan et Paul Brotelande." style="width:100px;">
+    </div>
+    <script src="popup.js"></script>
+</body>
+</html>
