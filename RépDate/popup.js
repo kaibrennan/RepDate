@@ -128,9 +128,15 @@ setInterval(
     },864
 
 );
-function ParisTime() {
+//starting the logic behind Time at the Paris observatory.
+function getParisObsTime() {
     const POlongitude = 2.337229; //this is 2.337229 deg E to be exact. PO Stands for Paris Observatory
-
-    //const ut1;
-
+    time_diff = getTimeDiffsec(POlongitude);
+    UT1 = new Date();
 }
+function getTimeDiffSec(longitude){
+    const lambda = longitude;
+    const formula = (1/15);
+    difference = longitude * formula;
+    return difference;
+};
