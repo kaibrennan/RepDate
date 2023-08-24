@@ -135,7 +135,6 @@ function getParisObsTime() {
     UT1 = new Date();
 }
 function getTimeDiffSec(longitude){
-    const lambda = longitude;
     const formula = (1/15);
     difference = longitude * formula;
     return difference;
