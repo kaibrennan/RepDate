@@ -126,4 +126,11 @@ setInterval(
 
         document.getElementById("monthimage").innerHTML=imgNames[month];
     },864
+
 );
+function ParisTime() {
+  const POlongitude = 2.337229; //this is 2.337229 deg E to be exact.
+
+    //const ut1;
+
+}
