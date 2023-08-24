@@ -129,7 +129,7 @@ setInterval(
 
 );
 function ParisTime() {
-  const POlongitude = 2.337229; //this is 2.337229 deg E to be exact.
+    const POlongitude = 2.337229; //this is 2.337229 deg E to be exact. PO Stands for Paris Observatory
 
     //const ut1;
 
