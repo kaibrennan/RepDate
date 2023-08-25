@@ -68,7 +68,9 @@ function getPic(){
     const standardMonth = resultArray[1];
     const standardYear = resultArray[2];
 
-    document.getElementById("monthimage").innerHTML=imgNames[standardMonth];
+    const standardMonthint = parseInt(standardMonth);
+
+    document.getElementById("monthimage").innerHTML=imgNames[standardMonthint];
 }
 
 //starting the logic behind Time at the Paris observatory.
