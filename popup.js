@@ -39,7 +39,7 @@ function getSymb(){
     const summer = ["Seigle","Avoine","Oignon","Véronique","Mulet","Romarin","Concombre","Échalote","Absinthe","Faucille","Coriandre","Artichaut","Giroflée","Lavande","Chamois","Tabac","Groseille","Gesse","Cerise","Parc","Menthe","Cumin","Haricot","Orcanète","Pintade","Sauge","Ail","Vesce","Blé","Chalemie","Épeautre","Bouillon-blanc","Melon","Ivraie","Bélier","Prêle","Armoise","Carthame","Mûre","Arrosoir","Panic","Salicorne","Abricot","Basilic","Brebis","Guimauve","Lin","Amande","Gentiane","Écluse","Carline","Câprier","Lentille","Aunée","Loutre","Myrte","Colza","Lupin","Coton","Moulin","Prune","Millet","Lycoperdon","Escourgeon","Saumon","Tubéreuse","Sucrion","Apocyn","Réglisse","Échelle","Pastèque","Fenouil","Épine-vinette","Noix","Truite","Citron","Cardère","Nerprun","Tagette","Hotte","Églantier","Noisette","Houblon","Sorgho","Écrevisse","Bigarade","Verge d'or","Maïs","Marron","Panier"];
     const sansculottides = ["La Fête de la Vertu","La Fête du Génie","La Fête du Travail","La Fête de l'Opinion","La Fête des Récompenses","La Fête de la Révolution"];
 
-    const resultArray = calcDate();
+    const resultArray = calcDate(); 
     const standardDay = resultArray[0];
     const standardMonth = resultArray[1];
     const standardYear = resultArray[2];
@@ -47,11 +47,11 @@ function getSymb(){
     let symbol;
     if (standardMonth < 2){
         symbol = autumn[standardDay-1+standardMonth*30]
-    } else if (month >= 2 && month < 5){
+    } else if (standardMonth >= 2 && standardMonth < 5){
         symbol = winter[standardDay-1+(standardMonth-3)*30]
-    } else if (month >= 5 && month < 8){
+    } else if (standardMonth >= 5 && standardMonth < 8){
         symbol = spring[standardDay-1+(standardMonth-6)*30]
-    } else if(month >= 8 && month < 11){
+    } else if(standardMonth >= 8 && standardMonth < 11){
         symbol = summer[standardDay-1+(standardMonth-9)*30]
     } else{
         symbol = sansculottides[standardDay-1]
