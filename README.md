@@ -1,4 +1,6 @@
 # RepDate
+## Update 25-8-2023
+- Fixing and refactoring, starting other logic.
 ## Update 24-8-2033
 - Add Readme & Todo for organizational purposes.
 ## Update 24-8-2023
