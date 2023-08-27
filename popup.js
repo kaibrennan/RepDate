@@ -42,7 +42,7 @@ function getSymb(){
     const resultArray = calcDate();
     const standardDay = resultArray[0];
     const standardMonth = resultArray[1];
-    const standardYear = resultArray[2];
+    const standardYear = resultArray[2]; // can be removed as not used
 
     const symbol = ruralCalendar[Math.floor(standardMonth/3)][(standardDay-1)+((standardMonth % 3) * 30)];
     
@@ -53,9 +53,9 @@ function getPic(){
     const imgNames = ['<img src="images/months/Vendémiaire.jpg" alt="Image du mois." style="height:200px;">','<img src="images/months/Brumaire.jpg" alt="Image du mois." style="height:200px;">','<img src="images/months/Frimaire.jpg" alt="Image du mois." style="height:200px;">','<img src="images/months/Nivôse.jpg" alt="Image du mois." style="height:200px;">','<img src="images/months/Pluviôse.jpg" alt="Image du mois." style="height:200px;">','<img src="images/months/Ventôse.jpg" alt="Image du mois." style="height:200px;">','<img src="images/months/Germinal.jpg" alt="Image du mois." style="height:200px;">','<img src="images/months/Floréal.jpg" alt="Image du mois." style="height:200px;">','<img src="images/months/Prairial.jpg" alt="Image du mois." style="height:200px;">','<img src="images/months/Messidor.jpg" alt="Image du mois." style="height:200px;">','<img src="images/months/Thermidor.jpg" alt="Image du mois." style="height:200px;">','<img src="images/months/Fructidor.jpg" alt="Image du mois." style="height:200px;">','<img src="images/months/Sansculottides.jpg" alt="Image du mois." style="height:200px;">'];
     
     const resultArray = calcDate();
-    const standardDay = resultArray[0];
+    const standardDay = resultArray[0]; // can be removed as not used
     const standardMonth = resultArray[1];
-    const standardYear = resultArray[2];
+    const standardYear = resultArray[2]; //can be removed as not used
 
     document.getElementById("monthimage").innerHTML=imgNames[standardMonth];
 }
