@@ -64,10 +64,16 @@ function getPic(){
 function getParisObsTime() {
     const POlongitude = 2.337229; //this is 2.337229 deg E to be exact. PO Stands for Paris Observatory
     time_diff = getTimeDiffsec(POlongitude);
-    UT1 = new Date();
+    Sec = timeSec()
+    timePO = Sec - time_diff //time of the paris Observatory in seconds
+    
+}
+function timeSec(){ //currently working on
+    const datesec = Date.now() / 1000 // not how this works Date in ms, is ms from jan 1 1970. figure out how to use that
+    return datesec
 }
 
-function getTimeDiffSec(longitude){
+function getTimeDiffSec(longitude){ // currently working on
     const formula = (1/15);
     difference = longitude * formula;
     return difference;
