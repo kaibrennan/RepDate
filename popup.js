@@ -1,3 +1,5 @@
+import { solstice } from 'astronomia';
+
 setInterval(
     function main(){
         getPic();
@@ -63,14 +65,20 @@ function getPic(){
 //starting the logic behind Time at the Paris observatory.
 function getParisObsTime() {
     const POlongitude = 2.337229; //this is 2.337229 deg E to be exact. PO Stands for Paris Observatory
+    const today = new Date.UTC();
+    const currentYear = today.getFullYear();
+    const startYear = new Date.UTC(currentYear, 0, 1);
+    const SecInYear = (today - startYear)/1000;
+    const AutumnSol = solstice.september2 // working on this TODO
+
     time_diff = getTimeDiffsec(POlongitude);
-    Sec = timeSec()
-    timePO = Sec - time_diff //time of the paris Observatory in seconds
+    Sec = timeSec();
+    timePO = SecInYear - time_diff //time of the paris Observatory in seconds
     
 }
 function timeSec(){ //currently working on
-    const datesec = Date.now() / 1000 // not how this works Date in ms, is ms from jan 1 1970. figure out how to use that
-    return datesec
+    const datesec = Date.now() / 1000; // not how this works Date in ms, is ms from jan 1 1970. figure out how to use that
+    return datesec;
 }
 
 function getTimeDiffSec(longitude){ // currently working on
