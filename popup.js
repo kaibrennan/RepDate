@@ -70,7 +70,7 @@ function getParisObsTime() {
     time_diff = getTimeDiffsec(POlongitude);
     Sec = timeSec();
     timePO = SecInYear - time_diff //time of the paris Observatory in seconds
-    
+    document.getElementById("testequinox").innerHTML=AutumnSol;
 }
 function timeSec(){ //currently working on
     const datesec = Date.now() / 1000; // not how this works Date in ms, is ms from jan 1 1970. figure out how to use that
