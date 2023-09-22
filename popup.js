@@ -6,7 +6,8 @@ setInterval(
         getRepDate();
         getSymb();
         getDecimalTime();
-        getParisObsTime();
+        //getParisObsTime();
+        //calcDate();
     },864);
 
 function getDecimalTime(){
@@ -60,17 +61,17 @@ function getPic(){
 }
 
 //starting the logic behind Time at the Paris observatory.
-function getParisObsTime() {
+/*function getParisObsTime() {
     const POlongitude = 2.337229; //this is 2.337229 deg E to be exact. PO Stands for Paris Observatory
     const today = new Date();
     const currentYear = today.getFullYear();
-   /* const startYear = new Date.UTC(currentYear, 0, 1);
+    const startYear = new Date.UTC(currentYear, 0, 1);
     const SecInYear = (today - startYear)/1000;
     //const AutumnSol = solstice.september2 // working on this TODO
 
     time_diff = getTimeDiffsec(POlongitude);
     Sec = timeSec();
-    timePO = SecInYear - time_diff //time of the paris Observatory in seconds*/
+    timePO = SecInYear - time_diff //time of the paris Observatory in seconds
     document.getElementById("testequinox").innerHTML=currentYear;
 }
 function timeSec(){ //currently working on
@@ -82,13 +83,18 @@ function getTimeDiffSec(longitude){ // currently working on
     const formula = (1/15);
     difference = longitude * formula;
     return difference;
-};
+};*/
 
 function calcDate(){
-    const now = new Date();
-    const zero = new Date(1792, 8, 22);
-    const diffTime = now - zero;
-    let days = Math.floor(diffTime / (24 * 60 * 60 * 1000))+1;
+    const now = new Date();                                 // today's date in millieconds and the start day of the calendar
+    const zero = new Date(1792, 8, 22);                     // start day of calendar in msec, (which =  1 Vendémiaire an I)
+    const diffTime = now - zero;                            // finds difference in milliseconds between the two dates
+    const year = Math.ceil(diffTime / 31556925129.6);       // divide by a precise solar year value to find year
+    const msec = diffTime - ((year - 1) * 31556925129.6);   // subtract to find how many msec passed in the current year 
+    const days = Math.ceil(msec / (24 * 60 * 60 * 1000));   // divide to convert msec into days passed in the current year
+    const month = Math.floor(days/30);                      // divide by the number of days/month to find current month
+    const day = days - (month * 30);                        // subtract to find how many days passed in the current month
+    /*let days = Math.floor(diffTime / (24 * 60 * 60 * 1000))+1; // divide by 
 
     let years = 1;
     let leapyear = (years % 4 == 0 && (years % 100 !== 0 || years % 400 == 0) && years % 4000 !== 0);
@@ -108,10 +114,10 @@ function calcDate(){
     while (days > 30){
         month += 1;
         days -= 30;
-    }
+    }*/
 
-    const standardDay = days;
+    const standardDay = day;
     const standardMonth = month;
-    const standardYear = years;
+    const standardYear = year;
     return [standardDay, standardMonth, standardYear];
 };
