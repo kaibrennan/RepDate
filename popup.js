@@ -1,13 +1,10 @@
-//import solstice from 'astronomia';
-
 setInterval(
     function main(){
-        getPic();
-        getRepDate();
-        getSymb();
         getDecimalTime();
+        getCurrentDate();
+        getSymb();
+        getPic();
         //getParisObsTime();
-        //calcDate();
     },864);
 
 function getDecimalTime(){
@@ -20,18 +17,43 @@ function getDecimalTime(){
     document.getElementById("reptemps").innerHTML=decHours + ":" + decMins + ":" + decSecs;
 }
 
-function getRepDate(){
+function dateCalculator(day, month, year){
+    const solarYear = 31556925250.7328;                         // A precise value for solar year in msec to avoid Romme simplification and follow the calendar's original intent of following seasons.
+    
+    const now = new Date(year, month, day, 0, 0, 0, 1);     // Make inputs a date value; this must have a nonzero time so that the subtract does not fail.
+    const leap = new Date(1794, 8, 22);                         // Day of the first leap year to ensure proper leap year occurrences.
+
+    const diffTime = now - leap;                                // Find difference in milliseconds between now and first leap.
+    const cYear = Math.floor(diffTime / solarYear);             // Divide to find the year-3, -3 because the calculation started from the first leap year, not the first year (22 Sep. 1792).
+    const cMsec = diffTime - (cYear * solarYear);               // Subtract to find how many msec passed in the current year.
+    const cDays = Math.ceil(cMsec / (24 * 60 * 60 * 1000));     // Divide to convert msec into days passed in the current year.
+    const cMonth = Math.floor(cDays / 30);                      // Divide by the number of days/month to find current month.
+    const cDay = cDays - (cMonth * 30);                         // Subtract to find how many days passed in the current month.
+
+    const standardDay = cDay;                                   // Standardizes all values so they appear as one would see them on a calendar
+    const standardMonth = cMonth+1;                             // "
+    const standardYear = cYear+3;                               // "
+
+    return [standardDay, standardMonth, standardYear];          // Returns the standardized date values as an array.
+};
+
+function getCurrentDate(){
     const monthNames = ["Vendémiaire","Brumaire","Frimaire","Nivôse","Pluviôse","Ventôse","Germinal","Floréal","Prairial","Messidor","Thermidor","Fructidor","Sansculottides"];
     const weekdayNames = ["Décadi","Primidi","Duodi","Tridi","Quartidi","Quintidi","Sextidi","Septidi","Octidi","Nonidi"];
 
-    const resultArray = calcDate();
-    const standardDay = resultArray[0];
-    const standardMonth = resultArray[1];
-    const standardYear = resultArray[2];
+    const today = new Date();                                       // Makes today a date value.
+    const day = today.getDate();                                    // Splits up today into day, month, and year in seperate vars so they can be put into the date calculator.
+    const month = today.getMonth();                                 // "
+    const year = today.getFullYear();                               // "
+
+    const resultArray = dateCalculator(day, month, year);           // Runs the date calculator for the entered date.
+    const standardDay = resultArray[0];                             // Unpacks the output values for day, month, and year.
+    const standardMonth = resultArray[1];                           // "
+    const standardYear = resultArray[2];                            // "
 
     const weekday = (standardDay % 10);
     
-    document.getElementById("repdate").innerHTML=weekdayNames[weekday] + ", " + standardDay + " " + monthNames[standardMonth] + ", an " + standardYear;
+    document.getElementById("repdate").innerHTML=weekdayNames[weekday] + ", " + standardDay + " " + monthNames[standardMonth-1] + ", an " + standardYear;
 }
 
 function getSymb(){
@@ -43,11 +65,16 @@ function getSymb(){
         ["La Fête de la Vertu","La Fête du Génie","La Fête du Travail","La Fête de l'Opinion","La Fête des Récompenses","La Fête de la Révolution"]
     ];
 
-    const resultArray = calcDate();
-    const standardDay = resultArray[0];
-    const standardMonth = resultArray[1];
+    const today = new Date();                                       // Makes today a date value.
+    const day = today.getDate();                                    // Splits up today into day, month, and year in seperate vars so they can be put into the date calculator.
+    const month = today.getMonth();                                 // "
+    const year = today.getFullYear();                               // "
+
+    const resultArray = dateCalculator(day, month, year);           // Runs the date calculator for today's date.
+    const standardDay = resultArray[0];                             // Unpacks the output values for day and month.
+    const standardMonth = resultArray[1];                           // "
     
-    const symbol = ruralCalendar[Math.floor(standardMonth/3)][(standardDay-1)+((standardMonth % 3) * 30)];
+    const symbol = ruralCalendar[Math.floor((standardMonth-1)/3)][(standardDay-1)+(((standardMonth-1) % 3) * 30)];
     
     document.getElementById("symbol").innerHTML=symbol;
 }
@@ -55,13 +82,32 @@ function getSymb(){
 function getPic(){
     const imgNames = ['<img src="images/months/Vendémiaire.jpg" alt="Image du mois." style="height:200px;">','<img src="images/months/Brumaire.jpg" alt="Image du mois." style="height:200px;">','<img src="images/months/Frimaire.jpg" alt="Image du mois." style="height:200px;">','<img src="images/months/Nivôse.jpg" alt="Image du mois." style="height:200px;">','<img src="images/months/Pluviôse.jpg" alt="Image du mois." style="height:200px;">','<img src="images/months/Ventôse.jpg" alt="Image du mois." style="height:200px;">','<img src="images/months/Germinal.jpg" alt="Image du mois." style="height:200px;">','<img src="images/months/Floréal.jpg" alt="Image du mois." style="height:200px;">','<img src="images/months/Prairial.jpg" alt="Image du mois." style="height:200px;">','<img src="images/months/Messidor.jpg" alt="Image du mois." style="height:200px;">','<img src="images/months/Thermidor.jpg" alt="Image du mois." style="height:200px;">','<img src="images/months/Fructidor.jpg" alt="Image du mois." style="height:200px;">','<img src="images/months/Sansculottides.jpg" alt="Image du mois." style="height:200px;">'];
     
-    const resultArray = calcDate();
-    const standardMonth = resultArray[1];
-    document.getElementById("monthimage").innerHTML=imgNames[standardMonth];
+    const today = new Date();                                       // Makes today a date value.
+    const day = today.getDate();                                    // Splits up today into day, month, and year in seperate vars so they can be put into the date calculator.
+    const month = today.getMonth();                                 // "
+    const year = today.getFullYear();                               // "
+    
+    const resultArray = dateCalculator(day, month, year);           // Runs the date calculator for today's date.
+    const standardMonth = resultArray[1];                           // Unpacks the output value for month.
+
+    document.getElementById("monthimage").innerHTML=imgNames[standardMonth-1];
 }
 
-//starting the logic behind Time at the Paris observatory.
-/*function getParisObsTime() {
+function convertToRepublican(){
+    const day = parseInt(document.getElementById('day').value);         // Takes in the input values by pulling from html fields.
+    const month = (parseInt(document.getElementById('month').value))-1; // "
+    const year = parseInt(document.getElementById('year').value);       // "
+
+    const resultArray = dateCalculator(day, month, year);               // Runs the date calculator for the entered date.
+    const standardDay = resultArray[0];                                 // Unpacks the output values for day, month, and year.
+    const standardMonth = resultArray[1];                               // "
+    const standardYear = resultArray[2];                                // "
+
+    document.getElementById("conv").innerHTML=standardDay + "/" + standardMonth + "/" + standardYear;
+};
+
+/*starting the logic behind Time at the Paris observatory.
+function getParisObsTime() {
     const POlongitude = 2.337229; //this is 2.337229 deg E to be exact. PO Stands for Paris Observatory
     const today = new Date();
     const currentYear = today.getFullYear();
@@ -84,69 +130,3 @@ function getTimeDiffSec(longitude){ // currently working on
     difference = longitude * formula;
     return difference;
 };*/
-
-function calcDate(){
-    const now = new Date();                                 // today's date in millieconds and the start day of the calendar
-    const zero = new Date(1792, 8, 22);                     // start day of calendar in msec, (which =  1 Vendémiaire an I)
-    const diffTime = now - zero;                            // finds difference in milliseconds between the two dates
-    const year = Math.ceil(diffTime / 31556925129.6);       // divide by a precise solar year value to find year
-    const msec = diffTime - ((year - 1) * 31556925129.6);   // subtract to find how many msec passed in the current year 
-    const days = Math.ceil(msec / (24 * 60 * 60 * 1000));   // divide to convert msec into days passed in the current year
-    const month = Math.floor(days/30);                      // divide by the number of days/month to find current month
-    const day = days - (month * 30);                        // subtract to find how many days passed in the current month
-    /*let days = Math.floor(diffTime / (24 * 60 * 60 * 1000))+1; // divide by 
-
-    let years = 1;
-    let leapyear = (years % 4 == 0 && (years % 100 !== 0 || years % 400 == 0) && years % 4000 !== 0);
-    while (leapyear == true && days > 366 || leapyear == false && days > 365) {
-        if (leapyear == true) {
-            days -= 366;
-            years += 1;
-            leapyear = (years % 4 == 0 && (years % 100 !== 0 || years % 400 == 0) && years % 4000 !== 0);
-        } else {
-            days -= 365;
-            years += 1;
-            leapyear = (years % 4 == 0 && (years % 100 !== 0 || years % 400 == 0) && years % 4000 !== 0);
-        }
-    }
-
-    let month = 0;
-    while (days > 30){
-        month += 1;
-        days -= 30;
-    }*/
-
-    const standardDay = day;
-    const standardMonth = month;
-    const standardYear = year;
-    return [standardDay, standardMonth, standardYear];
-};
-
-function convertToRepublican() {
-    const d = parseInt(document.getElementById('day').value);   // Takes in the input values by pulling from html fields
-    const m = parseInt(document.getElementById('month').value); // "
-    const y = parseInt(document.getElementById('year').value);  // "
-    const now = new Date(y, m - 1, d, 0, 0, 0, 1);              // makes them a date value. Must have a time value that is 
-                                                                // nonzero so that the subtract does not fail.
-    
-    const leap = new Date(1794, 8, 22);                         // instead of start day of calendar, use the day of the first leap year in msec to avoid errors in leap year calculations
-    const zero = new Date(1792, 8, 22);                         // calendar start day in ms
-    const diffTime = now - leap;                                // finds difference in milliseconds between now and first leap
-    const addval = leap - zero;                                 // find the difference between leap & zero to get accurate date val
-    const year = Math.floor(diffTime / 31556925129.6);          // divide by a precise solar year value to find year
-    const msec = diffTime - (year * 31556925129.6);             // subtract to find how many msec passed in the current year 
-    const days = Math.ceil(msec / (24 * 60 * 60 * 1000));       // divide to convert msec into days passed in the current year
-    const month = Math.floor(days / 30);                        // divide by the number of days/month to find current month
-    const day = days - (month * 30);                            // subtract to find how many days passed in the current month
-
-    const standardDay = day;
-    const standardMonth = month+1;
-    const standardYear = year+3;
-
-    /*const monthNames = ["Vendémiaire","Brumaire","Frimaire","Nivôse","Pluviôse","Ventôse","Germinal","Floréal","Prairial","Messidor","Thermidor","Fructidor","Sansculottides"];
-    const weekdayNames = ["Décadi","Primidi","Duodi","Tridi","Quartidi","Quintidi","Sextidi","Septidi","Octidi","Nonidi"];
-
-    const weekday = (standardDay % 10);*/
-    
-    document.getElementById("conv").innerHTML=standardDay + "/" + standardMonth + "/" + standardYear;
-};
