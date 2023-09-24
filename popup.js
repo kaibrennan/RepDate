@@ -129,17 +129,19 @@ function convertToRepublican() {
     const now = new Date(y, m - 1, d, 0, 0, 0, 1);              // makes them a date value. Must have a time value that is 
                                                                 // nonzero so that the subtract does not fail.
     
-    const zero = new Date(1792, 8, 22);                         // start day of calendar in msec, (which =  1 Vendémiaire an I)
-    const diffTime = now - zero;                                // finds difference in milliseconds between the two dates
-    const year = Math.floor(diffTime / 31556925129.6);           // divide by a precise solar year value to find year
-    const msec = diffTime - (year * 31556925129.6);       // subtract to find how many msec passed in the current year 
+    const leap = new Date(1794, 8, 22);                         // instead of start day of calendar, use the day of the first leap year in msec to avoid errors in leap year calculations
+    const zero = new Date(1792, 8, 22);                         // calendar start day in ms
+    const diffTime = now - leap;                                // finds difference in milliseconds between now and first leap
+    const addval = leap - zero;                                 // find the difference between leap & zero to get accurate date val
+    const year = Math.floor(diffTime / 31556925129.6);          // divide by a precise solar year value to find year
+    const msec = diffTime - (year * 31556925129.6);             // subtract to find how many msec passed in the current year 
     const days = Math.ceil(msec / (24 * 60 * 60 * 1000));       // divide to convert msec into days passed in the current year
     const month = Math.floor(days / 30);                        // divide by the number of days/month to find current month
     const day = days - (month * 30);                            // subtract to find how many days passed in the current month
 
     const standardDay = day;
     const standardMonth = month+1;
-    const standardYear = year+1;
+    const standardYear = year+3;
 
     /*const monthNames = ["Vendémiaire","Brumaire","Frimaire","Nivôse","Pluviôse","Ventôse","Germinal","Floréal","Prairial","Messidor","Thermidor","Fructidor","Sansculottides"];
     const weekdayNames = ["Décadi","Primidi","Duodi","Tridi","Quartidi","Quintidi","Sextidi","Septidi","Octidi","Nonidi"];
