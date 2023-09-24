@@ -6,14 +6,11 @@ Calendrier et horloge républicain français pratiques.
     - [ ] Translate all text, using Thomas Carlyle's month names.
     - [ ] Create a physical toggle using javascript.
     - [ ] See if it is possible to save this preference for a user.
+- [ ] Transfer to external stylesheet
 
 ### In Progress
-- [ ] Reform the calculation system so it does not rely on Romme's simplification, instead, use the date of the Autumn Equinox in Paris.
-    - [x] Retain the time calculator.
-    - [x] Merge the three identical instances of the calculation code in the .js file, if possible.
-    - [ ] Calculate the precise time of the most recent Autum Equinox in reference to any given date.
-    - [ ] From the above, find the Year, Month, Day, and Weekday.
-    - [ ] Format all information above to the existing layout.
+- [ ] Check why the years 1811, 2021, 2030, etc?. start on the wrong day.
+- [ ] Finish the converter from Rep. to Greg.
     
 ### Done
 - [x] Create the README.md file.
