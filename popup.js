@@ -18,10 +18,15 @@ function getDecimalTime(){
 }
 
 function dateCalculatorGR(day, month, year){
-    const solarYear = 31556925250.7328;                         // A precise value for solar year in msec to avoid Romme simplification and follow the calendar's original intent of following seasons.
-    
-    const now = new Date(year, month, day, 0, 0, 0, 1);     // Make inputs a date value; this must have a nonzero time so that the subtract does not fail.
+    const now = new Date(year, month, day, 0, 0, 0, 1);         // Make inputs a date value; this must have a nonzero time so that the subtract does not fail.
     const leap = new Date(1794, 8, 22);                         // Day of the first leap year to ensure proper leap year occurrences.
+
+    const solarStart = new Date(2000,0,1);                                                                                                  // Start of calculation for solar year. Creates the date which the Julian centuries are determined from.
+    const solarDiff = now - solarStart;                                                                                                     // Find diff. between date for calculation and above in order to determine no. of Julian centuries.
+    const solarDiffSec = solarDiff/1000;                                                                                                    // Convert diff. from msec to sec
+    const jCent = solarDiffSec/(86400 * 36525);                                                                                             // Multiply to find Julian centuries since 1 Jan 2000.
+    const solarYearDays = 365.2421896698 - 0.00000615359 * jCent - 0.000000000729*jCent*jCent + 0.000000000264*jCent*jCent*jCent;           // McCarthy & Seidelmann (2018, p. 267) calculation for tropical year (solar year)
+    const solarYear = solarYearDays * 86400000;                                                                                             // Convert solar year value from days to msec for calculations
 
     const diffTime = now - leap;                                // Find difference in milliseconds between now and first leap.
     const cYear = Math.floor(diffTime / solarYear);             // Divide to find the year-3, -3 because the calculation started from the first leap year, not the first year (22 Sep. 1792).
@@ -38,7 +43,7 @@ function dateCalculatorGR(day, month, year){
 };
 
 function dateCalculatorRG(day, month, year){
-    const solarYear = 31556925250.7328;                         // A precise value for solar year in msec to avoid Romme simplification and follow the calendar's original intent of following seasons.
+    const solarYear = 31556925250.7328;                         // This needs to be changed to the above
     const leap = new Date(1794, 8, 22);
     
     const cYear = year - 3;
