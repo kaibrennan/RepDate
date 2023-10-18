@@ -42,7 +42,7 @@ function dateCalculatorGR(day, month, year){
     return [standardDay, standardMonth, standardYear];          // Returns the standardized date values as an array.
 };
 
-function dateCalculatorRG(day, month, year){
+/*function dateCalculatorRG(day, month, year){
     const solarYear = 31556925250.7328;                         // This needs to be changed to the above
     const leap = new Date(1794, 8, 22);
     
@@ -61,7 +61,7 @@ function dateCalculatorRG(day, month, year){
     const standardYear = result.getFullYear();
 
     return [standardDay, standardMonth, standardYear];          // Returns the standardized date values as an array.
-};
+};*/
 
 function getCurrentDate(){
     const monthNames = ["Vendémiaire","Brumaire","Frimaire","Nivôse","Pluviôse","Ventôse","Germinal","Floréal","Prairial","Messidor","Thermidor","Fructidor","Sansculottides"];
@@ -79,7 +79,8 @@ function getCurrentDate(){
 
     const weekday = (standardDay % 10);
     
-    document.getElementById("repdate").innerHTML=weekdayNames[weekday] + ", " + standardDay + " " + monthNames[standardMonth-1] + ", an " + standardYear;
+    //ocument.getElementById("repdate").innerHTML=weekdayNames[weekday] + ", " + standardDay + " " + monthNames[standardMonth-1] + ", an " + standardYear;
+    document.getElementById("repdate").innerHTML=data
 }
 
 function getSymb(){
