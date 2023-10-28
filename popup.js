@@ -61,7 +61,7 @@ function dateCalculatorRG(day, month, year){
         const cResDate = new Date(newTimestamp);
 
         const standardDay = cResDate.getDate();        // Standardizes all values so they appear as one would see them on a calendar
-        const standardMonth = cResDate.getMonth();     // "
+        const standardMonth = cResDate.getMonth()+1;   // "
         const standardYear = cResDate.getFullYear();   // "
         
         return [standardDay, standardMonth, standardYear]; // Returns the standardized date values as an array.
