@@ -68,14 +68,9 @@ function dateCalculatorRG(day, month, year){
     }
 };
 
-function getCurrentDate(){
+function formatRepDate(day, month, year){
     const monthNames = ["Vendémiaire","Brumaire","Frimaire","Nivôse","Pluviôse","Ventôse","Germinal","Floréal","Prairial","Messidor","Thermidor","Fructidor","Sansculottides"];
     const weekdayNames = ["Décadi","Primidi","Duodi","Tridi","Quartidi","Quintidi","Sextidi","Septidi","Octidi","Nonidi"];
-
-    const today = new Date();                                       // Makes today a date value.
-    const day = today.getDate();                                    // Splits up today into day, month, and year in seperate vars so they can be put into the date calculator.
-    const month = today.getMonth();                                 // "
-    const year = today.getFullYear();                               // "
 
     const resultArray = dateCalculatorGR(day, month, year);           // Runs the date calculator for the entered date.
     const standardDay = resultArray[0];                             // Unpacks the output values for day, month, and year.
@@ -83,8 +78,23 @@ function getCurrentDate(){
     const standardYear = resultArray[2];                            // "
 
     const weekday = (standardDay % 10);
+
+    return [weekdayNames[weekday], standardDay, monthNames[standardMonth-1], standardYear];
+}
+
+function getCurrentDate(){
+    const today = new Date();                                       // Makes today a date value.
+    const day = today.getDate();                                    // Splits up today into day, month, and year in seperate vars so they can be put into the date calculator.
+    const month = today.getMonth();                                 // "
+    const year = today.getFullYear();                               // "
+
+    const resultArray = formatRepDate(day, month, year);
+    const weekday = resultArray[0];                             // Unpacks the output values.
+    const standardDay = resultArray[1];                         // "
+    const monthName = resultArray[2];                           // "
+    const standardYear = resultArray[3];                        // "
     
-    document.getElementById("repdate").innerHTML=weekdayNames[weekday] + ", " + standardDay + " " + monthNames[standardMonth-1] + ", an " + standardYear;
+    document.getElementById("repdate").innerHTML=weekday + ", " + standardDay + " " + monthName + ", an " + standardYear;
 }
 
 function getSymb(){
