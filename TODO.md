@@ -8,7 +8,6 @@ Calendrier et horloge républicain français pratiques.
     - [ ] See if it is possible to save this preference for a user.
 - [ ] Transfer to external stylesheet (optional).
 - [ ] Improve UI.
-- [ ] Fix the fact that on the app version the converters won't take any input.
 
 ### In Progress
     
@@ -19,3 +18,4 @@ Calendrier et horloge républicain français pratiques.
     - [x] Fix the search system for the date.
 - [x] Check why the years 1811, 2021, 2030, etc?. start on the wrong day. (this error has been fixed)
 - [x] Finish the converter from Rep. to Greg.
+- [x] Fix the fact that on the app version the converters won't take any input.

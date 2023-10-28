@@ -124,6 +124,9 @@ function getPic(){
     document.getElementById("monthimage").innerHTML=imgNames[standardMonth-1];
 }
 
+document.getElementById('convertToRepublican').addEventListener('click', convertToRepublican);
+document.getElementById('convertToGregorian').addEventListener('click', convertToGregorian);
+
 function convertToRepublican(){
     const day = parseInt(document.getElementById('day').value);         // Takes in the input values by pulling from html fields.
     const month = (parseInt(document.getElementById('month').value))-1; // "
