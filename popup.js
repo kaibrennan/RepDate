@@ -79,7 +79,7 @@ function getCurrentDate(){
 
     const weekday = (standardDay % 10);
     
-    //ocument.getElementById("repdate").innerHTML=weekdayNames[weekday] + ", " + standardDay + " " + monthNames[standardMonth-1] + ", an " + standardYear;
+    //document.getElementById("repdate").innerHTML=weekdayNames[weekday] + ", " + standardDay + " " + monthNames[standardMonth-1] + ", an " + standardYear;
     document.getElementById("repdate").innerHTML=data
 }
 
