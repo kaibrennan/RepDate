@@ -128,7 +128,7 @@ function convertToRepublican(){
     const month = (parseInt(document.getElementById('month').value))-1; // "
     const year = parseInt(document.getElementById('year').value);       // "
 
-    const resultArray = dateCalculatorGR(day, month, year);               // Runs the date calculator for the entered date.
+    const resultArray = dateCalculatorGR(day, month, year);             // Runs the date calculator for the entered date.
     const standardDay = resultArray[0];                                 // Unpacks the output values for day, month, and year.
     const standardMonth = resultArray[1];                               // "
     const standardYear = resultArray[2];                                // "
@@ -137,16 +137,16 @@ function convertToRepublican(){
 };
 
 function convertToGregorian(){
-    /*const day = parseInt(document.getElementById('day').value);         // Takes in the input values by pulling from html fields.
+    const day = parseInt(document.getElementById('day').value);         // Takes in the input values by pulling from html fields.
     const month = (parseInt(document.getElementById('month').value))-1; // "
     const year = parseInt(document.getElementById('year').value);       // "
 
-    const resultArray = dateCalculatorRG(day, month, year);               // Runs the date calculator for the entered date.
+    const resultArray = dateCalculatorRG(day, month, year);             // Runs the date calculator for the entered date.
     const standardDay = resultArray[0];                                 // Unpacks the output values for day, month, and year.
     const standardMonth = resultArray[1];                               // "
     const standardYear = resultArray[2];                                // "
-*/
-    document.getElementById("conv").innerHTML="Désolé, travail en cours.";
+
+    document.getElementById("conv").innerHTML=standardDay + "/" + standardMonth + "/" + standardYear;
 };
 
 /*starting the logic behind Time at the Paris observatory.
