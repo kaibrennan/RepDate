@@ -20,17 +20,17 @@ function getDecimalTime(){
 }
 
 function dateCalculatorGR(day, month, year){
-    const input = new Date(year, month, day); // Make inputs a date value.
-    const start = new Date(1792, 8, 22);      // Day of the first  year to ensure correct calculations.
+    const input = new Date(year, month, day, 0, 0, 0, 1); // Make inputs a date value.
+    const start = new Date(1792, 8, 22);                  // Day of the first  year to ensure correct calculations.
 
     if(input < start){
         return [-1, -1, -1]; //this is invalid input and should not have been entered. This error will be addressed once this method proves successful for current date.
     }
 
     //the following loop's goal is to find the year one is currently in.
-    let cYear = -1;
+    let cYear = null;
     let dayZero = new Date(null, null, null);
-    for (let i = 1; i <= (equinoxList.length + 1); i++){
+    for (let i = 1; i < (equinoxList.length); i++){
         let wipYear = new Date (equinoxList[i]);
         if(input <= wipYear){
             cYear = i;
@@ -39,7 +39,7 @@ function dateCalculatorGR(day, month, year){
         }
     }
 
-    const cDays = Math.ceil((input - dayZero)/(24 * 60 * 60 * 1000))+1;
+    const cDays = Math.ceil((input - dayZero)/(24 * 60 * 60 * 1000));
     const cMonth = Math.ceil(cDays / 30);
     const cDay = Math.ceil(cDays % 30);
 
