@@ -148,6 +148,14 @@ function convertToRepublican(){
     const standardYear = resultArray[2];                                // "
 
     document.getElementById("conv").innerHTML=standardDay + "/" + standardMonth + "/" + standardYear;
+
+    const resultArray2 = formatRepDate(day, month, year);
+    const weekday = resultArray2[0];                             // Unpacks the output values.
+    const standardDay2 = resultArray2[1];                         // "
+    const monthName = resultArray2[2];                           // "
+    const standardYear2 = resultArray2[3];                        // "
+    
+    document.getElementById("formatted").innerHTML=weekday + ", " + standardDay2 + " " + monthName + ", an " + standardYear2;
 };
 
 function convertToGregorian(){
