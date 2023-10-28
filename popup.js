@@ -25,29 +25,46 @@ function dateCalculatorGR(day, month, year){
 
     if(input < start){
         return [-1, -1, -1]; //this is invalid input and should not have been entered. This error will be addressed once this method proves successful for current date.
-    }
-
-    //the following loop's goal is to find the year one is currently in.
-    let cYear = null;
-    let dayZero = new Date(null, null, null);
-    for (let i = 1; i < (equinoxList.length); i++){
-        let wipYear = new Date (equinoxList[i]);
-        if(input <= wipYear){
-            cYear = i;
-            dayZero = new Date (equinoxList[i-1]);
-            break;
+    }else{
+        //the following loop's goal is to find the year one is currently in.
+        let cYear = null;
+        let dayZero = new Date(null, null, null);
+        for (let i = 1; i < (equinoxList.length); i++){
+            let wipYear = new Date (equinoxList[i]);
+            if(input <= wipYear){
+                cYear = i;
+                dayZero = new Date (equinoxList[i-1]);
+                break;
+            }
         }
+
+        const cDays = Math.ceil((input - dayZero)/(24 * 60 * 60 * 1000));
+        const cMonth = Math.ceil(cDays / 30);
+        const cDay = Math.ceil(cDays % 30);
+
+        const standardDay = cDay;     // Standardizes all values so they appear as one would see them on a calendar
+        const standardMonth = cMonth; // "
+        const standardYear = cYear;   // "
+
+        return [standardDay, standardMonth, standardYear]; // Returns the standardized date values as an array.
     }
+};
 
-    const cDays = Math.ceil((input - dayZero)/(24 * 60 * 60 * 1000));
-    const cMonth = Math.ceil(cDays / 30);
-    const cDay = Math.ceil(cDays % 30);
+function dateCalculatorRG(day, month, year){
+    if(year < 0){
+        return [-1, -1, -1]; //this is invalid input and should not have been entered. This error will be addressed once this method proves successful for current date.
+    }else{
+        const cResDate = new Date (equinoxList[year-1]);
+        const cDaysToAdd = ((month-1) * 30) + day;
 
-    const standardDay = cDay;     // Standardizes all values so they appear as one would see them on a calendar
-    const standardMonth = cMonth; // "
-    const standardYear = cYear;   // "
+        cResDate.setDate(cBaseDate.getDate() + cDaysToAdd);
 
-    return [standardDay, standardMonth, standardYear]; // Returns the standardized date values as an array.
+        const standardDay = cResDate.getDate();        // Standardizes all values so they appear as one would see them on a calendar
+        const standardMonth = cResDate.getMonth() + 1; // "
+        const standardYear = cResDate.getFullYear();   // "
+
+        return [standardDay, standardMonth, standardYear]; // Returns the standardized date values as an array.
+    }
 };
 
 function getCurrentDate(){
