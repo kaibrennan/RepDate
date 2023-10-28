@@ -54,15 +54,16 @@ function dateCalculatorRG(day, month, year){
     if(year < 0){
         return [-1, -1, -1]; //this is invalid input and should not have been entered. This error will be addressed once this method proves successful for current date.
     }else{
-        const cResDate = new Date (equinoxList[year-1]);
-        const cDaysToAdd = ((month-1) * 30) + day;
+        const cBaseDate = new Date (equinoxList[year-1]);
+        const cMsToAdd = (((month-1) * 30) + (day-1)) * (24 * 60 * 60 * 1000);
 
-        cResDate.setDate(cBaseDate.getDate() + cDaysToAdd);
+        const newTimestamp = cBaseDate.getTime() + cMsToAdd;
+        const cResDate = new Date(newTimestamp);
 
         const standardDay = cResDate.getDate();        // Standardizes all values so they appear as one would see them on a calendar
-        const standardMonth = cResDate.getMonth() + 1; // "
+        const standardMonth = cResDate.getMonth();     // "
         const standardYear = cResDate.getFullYear();   // "
-
+        
         return [standardDay, standardMonth, standardYear]; // Returns the standardized date values as an array.
     }
 };
@@ -138,7 +139,7 @@ function convertToRepublican(){
 
 function convertToGregorian(){
     const day = parseInt(document.getElementById('day').value);         // Takes in the input values by pulling from html fields.
-    const month = (parseInt(document.getElementById('month').value))-1; // "
+    const month = (parseInt(document.getElementById('month').value));   // "
     const year = parseInt(document.getElementById('year').value);       // "
 
     const resultArray = dateCalculatorRG(day, month, year);             // Runs the date calculator for the entered date.
