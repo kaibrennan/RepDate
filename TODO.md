@@ -6,7 +6,6 @@ Calendrier et horloge républicain français pratiques.
     - [ ] Translate all text, using Thomas Carlyle's month names.
     - [ ] Create a physical toggle using javascript.
     - [ ] See if it is possible to save this preference for a user.
-- [ ] Transfer to external stylesheet (optional).
 - [ ] Improve UI.
 
 ### In Progress
@@ -19,3 +18,4 @@ Calendrier et horloge républicain français pratiques.
 - [x] Check why the years 1811, 2021, 2030, etc?. start on the wrong day. (this error has been fixed)
 - [x] Finish the converter from Rep. to Greg.
 - [x] Fix the fact that on the app version the converters won't take any input.
+- [x] Transfer to external stylesheet (optional).
