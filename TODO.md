@@ -2,11 +2,6 @@
 Calendrier et horloge républicain français pratiques.
 
 ### To do
-- [ ] Create a bilingual fr/en toggle.
-    - [ ] Translate all text, using Thomas Carlyle's month names.
-    - [ ] Create a physical toggle using javascript.
-    - [ ] See if it is possible to save this preference for a user.
-- [ ] Improve UI.
 
 ### In Progress
     
@@ -19,3 +14,6 @@ Calendrier et horloge républicain français pratiques.
 - [x] Finish the converter from Rep. to Greg.
 - [x] Fix the fact that on the app version the converters won't take any input.
 - [x] Transfer to external stylesheet (optional).
+- [x] Create a bilingual fr/en toggle.
+    - [x] Translate all text
+- [x] Improve UI.
