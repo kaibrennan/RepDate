@@ -35,7 +35,7 @@ li{
     float: center;
 }
 .head a:hover{
-    background-color: goldenrod; 
+    color: goldenrod; 
 }
 .head a{
     text-decoration: none;
