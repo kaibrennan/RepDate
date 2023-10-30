@@ -59,6 +59,19 @@ li{
 .foot img{
     margin-top: 2.5px;
 }
+button{
+    background-color: #141619;
+    color: whitesmoke;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 12px;
+    margin-top: 5px;
+}
+input{
+    background-color: #141619;
+    color: whitesmoke;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 12px;
+}
 /*.flexbox {
     display: flex;
 }*/
