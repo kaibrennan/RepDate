@@ -66,7 +66,12 @@ function dateCalculatorGR(day, month, year){
 
         const cDays = Math.ceil((input - dayZero)/(24 * 60 * 60 * 1000));
         const cMonth = Math.ceil(cDays / 30);
-        const cDay = Math.ceil(cDays % 30);
+        let cDay = null;
+        if (Math.ceil(cDays % 30) == 0){
+            cDay = 30;
+        }else{
+            cDay = Math.ceil(cDays % 30);
+        }
 
         const standardDay = cDay;     // Standardizes all values so they appear as one would see them on a calendar
         const standardMonth = cMonth; // "
