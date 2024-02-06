@@ -1,7 +1,7 @@
 {
     "manifest_version": 3,
     "name": "RépDate",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "Calendrier et horloge républicain français pratiques.",
     "icons": {"128": "icon_128.png"},
     "action": {
