@@ -17,3 +17,5 @@ Calendrier et horloge républicain français pratiques.
 - [x] Create a bilingual fr/en toggle.
     - [x] Translate all text
 - [x] Improve UI.
+- [X] Fix image bug.
+- [X] Fix 30th day of each Republican month bug.
