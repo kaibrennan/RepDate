@@ -91,6 +91,9 @@ function dateCalculatorRG(day, month, year){
         const newTimestamp = cBaseDate.getTime() + cMsToAdd;
         const cResDate = new Date(newTimestamp);
 
+        cResDate.setDate(cResDate.getDate() + 1); //This adjusts the calendar to account for a day lost in conversion
+
+
         const standardDay = cResDate.getDate();        // Standardizes all values so they appear as one would see them on a calendar
         const standardMonth = cResDate.getMonth()+1;   // "
         const standardYear = cResDate.getFullYear();   // "
@@ -184,28 +187,3 @@ function convertToGregorian(){
 
     document.getElementById("formatted").innerHTML=weekday + ", " + standardDay + " " + monthName + ", an " + standardYear;
 };
-
-/*starting the logic behind Time at the Paris observatory.
-function getParisObsTime() {
-    const POlongitude = 2.337229; //this is 2.337229 deg E to be exact. PO Stands for Paris Observatory
-    const today = new Date();
-    const currentYear = today.getFullYear();
-    const startYear = new Date.UTC(currentYear, 0, 1);
-    const SecInYear = (today - startYear)/1000;
-    //const AutumnSol = solstice.september2 // working on this TODO
-
-    time_diff = getTimeDiffsec(POlongitude);
-    Sec = timeSec();
-    timePO = SecInYear - time_diff //time of the paris Observatory in seconds
-    document.getElementById("testequinox").innerHTML=currentYear;
-}
-function timeSec(){ //currently working on
-    const datesec = Date.now() / 1000; // not how this works Date in ms, is ms from jan 1 1970. figure out how to use that
-    return datesec;
-}
-
-function getTimeDiffSec(longitude){ // currently working on
-    const formula = (1/15);
-    difference = longitude * formula;
-    return difference;
-};*/

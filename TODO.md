@@ -1,4 +1,4 @@
-# RépDate
+# RepDate
 Calendrier et horloge républicain français pratiques.
 
 ### To do
@@ -19,3 +19,4 @@ Calendrier et horloge républicain français pratiques.
 - [x] Improve UI.
 - [X] Fix image bug.
 - [X] Fix 30th day of each Republican month bug.
+- [X] Fix the bug that was discovered in converting from Republican -> Gregorian
